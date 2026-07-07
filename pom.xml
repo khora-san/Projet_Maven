@@ -60,6 +60,13 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -123,5 +130,25 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <database.url>jdbc:mysql://localhost:3306/dev_db</database.url>
+                <database.user>dev_user</database.user>
+                <database.password>dev_password</database.password>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <database.url>jdbc:mysql://prod-server:3306/prod_db</database.url>
+                <database.user>prod_user</database.user>
+                <database.password>prod_password</database.password>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
